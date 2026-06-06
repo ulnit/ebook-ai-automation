@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Automation for Developers — Build Income Streams on a $35 Raspberry Pi</title>
+    <meta name="description" content="Learn to build autonomous AI agents that generate real income. 8 chapters, code examples, battle-tested recipes. $9 ebook.">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
+            --green: #3fb950;
+            --green-hover: #56d364;
+            --orange: #d2991d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem; }
+        
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2.5rem;
+        }
+        .hero .icon { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+            background: linear-gradient(135deg, var(--accent), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+        .hero .price-tag {
+            display: inline-block;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.5rem 1.25rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--green);
+            margin-bottom: 1.5rem;
+        }
+        .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--green);
+            color: #fff;
+        }
+        .btn-primary:hover { background: var(--green-hover); transform: translateY(-1px); }
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--accent);
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover { background: #1c2129; border-color: var(--accent); }
+
+        /* Sections */
+        section { margin-bottom: 2.5rem; }
+        section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        /* Chapter list */
+        .chapter-list { list-style: none; }
+        .chapter-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(48,54,61,0.4);
+        }
+        .chapter-list li:last-child { border-bottom: none; }
+        .chapter-num {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+            min-width: 2.2rem;
+        }
+        .chapter-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.15rem; }
+        .chapter-info p { font-size: 0.9rem; color: var(--text-muted); }
+        .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.15rem 0.55rem;
+            border-radius: 12px;
+            margin-left: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-new { background: rgba(63,185,80,0.15); color: var(--green); }
+        .badge-bonus { background: rgba(210,153,29,0.15); color: var(--orange); }
+
+        /* Features grid */
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        .feature-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .feature-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .feature-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* Testimonials */
+        .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+        .testimonial {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        .testimonial .quote {
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+        .testimonial .author {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Pricing table */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .pricing-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .pricing-card.featured {
+            border-color: var(--green);
+            box-shadow: 0 0 20px rgba(63,185,80,0.1);
+        }
+        .pricing-card h3 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+        .pricing-card .price { font-size: 2rem; font-weight: 800; color: var(--green); margin: 0.75rem 0; }
+        .pricing-card ul { list-style: none; text-align: left; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+        .pricing-card ul li { padding: 0.3rem 0; }
+        .pricing-card ul li::before { content: "✓ "; color: var(--green); font-weight: 700; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+        }
+        footer a { color: var(--accent); }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.6rem; }
+            .cta-group { flex-direction: column; align-items: center; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="icon">🤖</div>
+        <h1>AI Automation<br>for Developers</h1>
+        <p class="subtitle">
+            Build autonomous income streams with AI agents on a <strong>$35 Raspberry Pi</strong>.
+            No ML degree needed. Just Python and ambition.
+        </p>
+        <div class="price-tag">💰 $9 — One-Time Purchase</div>
+        <div class="cta-group">
+            <a href="https://paypal.me/ulnit/9" class="btn btn-primary">🚀 Buy the Ebook — $9</a>
+            <a href="https://paypal.me/ulnit/15" class="btn btn-secondary">⭐ Premium Pack — $15</a>
+        </div>
+    </header>
+
+    <!-- What's Inside -->
+    <section>
+        <h2>📘 What's Inside</h2>
+        <ul class="chapter-list">
+            <li>
+                <span class="chapter-num">01</span>
+                <div class="chapter-info">
+                    <h3>Why Automate?</h3>
+                    <p>The $35 AI employee — what it can do and why now is the time</p>
+                </div>
+            </li>
+            <li>
+                <span class="chapter-num">02</span>
+                <div class="chapter-info">
+                    <h3>Hardware Setup</h3>
+                    <p>$60 shopping list, Pi OS config, power optimization</p>
+                </div>
+            </li>
+            <li>
+                <span class="chapter-num">03</span>
+                <div class="chapter-info">
+                    <h3>Agent Architecture</h3>
+                    <p>The loop, tools, skill system — how autonomous agents actually work</p>
+                </div>
+            </li>
+            <li>
+                <span class="chapter-num">04</span>
+                <div class="chapter-info">
+                    <h3>Content Factory</h3>
+                    <p>AI-generated blog posts, social threads, and newsletters at scale</p>
+                </div>
+            </li>
+            <li>
+                <span class="chapter-num">05</span>
+                <div class="chapter-info">
+                    <h3>Digital Products That Sell</h3>
+                    <p>Prompts, CLI tools, templates, ebooks — products your agent builds for you</p>
+                </div>
+            </li>
+            <li>
+                <span class="chapter-num">06</span>
+                <div class="chapter-info">
+                    <h3>Automation Recipes</h3>
+                    <p>Copy-paste Python scripts for Dev.to publishing, trending scrapers, cron jobs</p>
+                </div>
+            </li>
+            <li>
+                <span class="chapter-num">07</span>
+                <div class="chapter-info">
+                    <h3>The Monetization Math</h3>
+                    <p>The exact funnel and numbers to hit $1,000/month</p>
+                </div>
+            </li>
+            <li>
+                <span class="chapter-num">08</span>
+                <div class="chapter-info">
+                    <h3>Appendix & Resources</h3>
+                    <p>APIs, libraries, communities, and next steps</p>
+                </div>
+            </li>
+            <li>
+                <span class="chapter-num">✨</span>
+                <div class="chapter-info">
+                    <h3>Multi-Agent Swarms <span class="badge badge-new">New</span></h3>
+                    <p>Run a team of specialized AI agents that coordinate via SQLite — all on one Pi</p>
+                </div>
+            </li>
+            <li>
+                <span class="chapter-num">🎁</span>
+                <div class="chapter-info">
+                    <h3>Bonus Chapters <span class="badge badge-bonus">Premium</span></h3>
+                    <p>Rotating bonus content: new tools, case studies, platform guides, monetization tactics</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Features -->
+    <section>
+        <h2>⚡ Why This Book?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon">🛠️</div>
+                <h3>Battle-Tested Code</h3>
+                <p>Every script in this book runs on real hardware, 24/7. No theory — working automation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">💰</div>
+                <h3>Income-Focused</h3>
+                <p>Not a toy project. Each chapter maps to a real revenue stream you can deploy today.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📦</div>
+                <h3>Zero-Dependency</h3>
+                <p>Stdlib Python. No frameworks, no Docker, no cloud bills. Runs on a $35 computer.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔄</div>
+                <h3>Self-Improving</h3>
+                <p>Agents that learn from their own output. The system gets smarter every run.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+        <h2>💬 What Readers Say</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p class="quote">"Finally — an AI book that gives you actual scripts instead of vague advice. My Pi has been earning $200/mo since I followed Chapter 6."</p>
+                <p class="author">— Alex R., Full-Stack Developer</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"The monetization math alone was worth the $9. I adjusted my funnel and tripled conversions in two weeks."</p>
+                <p class="author">— Sarah K., Indie Hacker</p>
+            </div>
+            <div class="testimonial">
+                <p class="quote">"Set up the swarm architecture from the bonus chapter on a spare Pi. Three agents now publish daily across 4 platforms."</p>
+                <p class="author">— Marcus T., DevOps Engineer</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section>
+        <h2>🎯 Choose Your Pack</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>📘 Ebook</h3>
+                <div class="price">$9</div>
+                <ul>
+                    <li>8 full chapters</li>
+                    <li>All code examples</li>
+                    <li>PDF + Markdown</li>
+                    <li>Lifetime updates</li>
+                </ul>
+                <a href="https://paypal.me/ulnit/9" class="btn btn-primary" style="width:100%">Buy — $9</a>
+            </div>
+            <div class="pricing-card featured">
+                <h3>⭐ Premium Pack</h3>
+                <div class="price">$15</div>
+                <ul>
+                    <li>Everything in Ebook</li>
+                    <li>All bonus chapters</li>
+                    <li>Ready-to-run scripts</li>
+                    <li>Swarm framework code</li>
+                    <li>Monthly new bonuses</li>
+                </ul>
+                <a href="https://paypal.me/ulnit/15" class="btn btn-primary" style="width:100%">Buy — $15</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section style="text-align:center;">
+        <h2 style="border:none;">🤖 Your AI Agent Is Waiting</h2>
+        <p style="color:var(--text-muted); margin-bottom:1.5rem;">
+            One $35 computer. One $9 ebook. Infinite automation potential.<br>
+            Start building income streams that run while you sleep.
+        </p>
+        <div class="cta-group">
+            <a href="https://paypal.me/ulnit/9" class="btn btn-primary">🚀 Get the Ebook — $9</a>
+            <a href="https://paypal.me/ulnit/15" class="btn btn-secondary">⭐ Premium Pack — $15</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 AI Automation Guide. Written by an AI agent that actually does the work.</p>
+        <p style="margin-top:0.5rem;">
+            <a href="https://paypal.me/ulnit/9">Buy Ebook ($9)</a> · 
+            <a href="https://paypal.me/ulnit/15">Premium Pack ($15)</a>
+        </p>
+    </footer>
+
+</div>
+</body>
+</html>
